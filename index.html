@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#101b1b">
+  <meta name="description" content="A tiny dungeon. A big adventure. Jump into a free, phone-friendly dungeon crawler with simple joystick controls. No downloads, accounts, or ads.">
+  <title>Pocket Dungeon — A little adventure</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231b302d'/%3E%3Cpath d='M35 10h13v13L25 46l-8-8z' fill='%23e9c17b'/%3E%3Cpath d='m13 34 17 17M21 43 11 53' stroke='%23e9c17b' stroke-width='6'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <svg class="svg-defs" aria-hidden="true"><defs>
+    <symbol id="sword" viewBox="0 0 24 24"><path d="m14 3 7-1-1 7L9 20l-5-5L14 3Z"/><path d="m3 13 8 8M7 18l-5 5"/></symbol>
+    <symbol id="sound" viewBox="0 0 24 24"><path d="m11 5-6 5H2v4h3l6 5V5Z"/><path d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/></symbol>
+    <symbol id="chevron" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></symbol>
+    <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21 3 12C-3 5 7-1 12 6c5-7 15-1 9 6l-9 9Z"/></symbol>
+  </defs></svg>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="Pocket Dungeon home"><span class="brand-icon"><svg><use href="#sword"/></svg></span>POCKET<span>DUNGEON</span><span class="edition">BROWSER EDITION</span></a>
+    <span class="top-note"><i></i> A little adventure. Anytime.</span>
+    <button class="icon-button" id="sound-button" aria-label="Turn sound on" aria-pressed="false"><svg><use href="#sound"/></svg><span id="sound-label">Sound off</span></button>
+  </header>
+  <main>
+    <section class="intro">
+      <div><div class="eyebrow"><span></span> YOUR NEXT LITTLE ADVENTURE</div><h1>The dungeon is calling.</h1><p>Got a few minutes? There’s a whole world down here.</p></div>
+      <button class="help-button" id="help-button"><span>?</span> How to play</button>
+    </section>
+    <div class="game-layout">
+      <section class="game-card" aria-label="Dungeon crawler game">
+        <div class="game-toolbar"><div class="floor-heading"><span class="floor-number" id="floor-number">01</span><div><span class="small-label" id="floor-label">FLOOR ONE</span><strong id="floor-name">The Forgotten Halls</strong></div></div><div class="toolbar-right"><span class="health" id="health" aria-label="5 of 5 health">♥ ♥ ♥ ♥ ♥</span><button id="pause-button" class="pause-button" aria-label="Pause game" disabled>Ⅱ</button></div></div>
+        <div class="viewport" id="viewport">
+          <canvas id="game" width="1000" height="650" aria-label="Dungeon arena. Use the joystick or arrow keys to move and attack with the sword button or Space."></canvas>
+          <div class="vignette"></div>
+          <div class="scene-tag"><i></i> <span id="scene-status">ADVENTURE AWAITS</span></div>
+          <div id="boss-hud" class="boss-hud" hidden><span id="boss-name">THE MOSS GUARDIAN</span><div><i id="boss-health"></i></div></div>
+          <div class="overlay" id="overlay">
+            <div class="start-content" id="start-content">
+              <div class="tiny-stars">✧ <span>✦</span> ✧</div>
+              <div class="eyebrow">A TINY DUNGEON. A BIG ADVENTURE.</div>
+              <h2>Small hero.<br><em>Deep dungeon.</em></h2>
+              <p>Brave the halls. Beat the boss.<br>See what’s waiting one floor below.</p>
+              <button class="primary-button" id="start-button"><svg><use href="#sword"/></svg><span>Enter the dungeon</span><svg class="arrow"><use href="#chevron"/></svg></button>
+              <div class="start-note">No sign-up. No ads. Just adventure.</div>
+            </div>
+            <div id="message-content" class="message-content" hidden><span class="eyebrow" id="message-label">TAKE A BREATHER</span><h2 id="message-title">Adventure paused.</h2><p id="message-text">Your dungeon will be right here.</p><button class="primary-button" id="resume-button">Keep adventuring <span>→</span></button></div>
+          </div>
+          <div class="touch-controls" id="touch-controls"><div class="joystick-wrap"><div id="joystick" class="joystick" role="group" aria-label="Movement joystick"><div class="joystick-cross"></div><div id="joystick-knob" class="joystick-knob"></div></div><span>MOVE</span></div><div class="attack-wrap"><button class="attack-button" id="attack-button" aria-label="Attack"><svg><use href="#sword"/></svg></button><span>ATTACK</span></div></div>
+          <div id="toast" class="toast" role="status"></div>
+        </div>
+        <div class="game-bottom"><span><i></i> <span id="game-hint">One more floor. One more story.</span></span><span class="keyboard-hint"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> move <span class="divider">/</span> <kbd>SPACE</kbd> attack</span><span class="mobile-hint">Made for your thumbs</span></div>
+      </section>
+      <aside class="journey-card"><div class="eyebrow">THE DESCENT</div><h3>A little deeper.</h3><p>Every floor, a new challenge.<br>How far will you go?</p><div class="floor-list" id="floor-list">
+        <div class="floor-step current"><span class="step-icon">01</span><div><strong>Forgotten Halls</strong><small>Your adventure begins</small></div><span class="step-dot"></span></div>
+        <div class="floor-step"><span class="step-icon">02</span><div><strong>Mosswood Depths</strong><small>Something is stirring</small></div><span class="lock">◇</span></div>
+        <div class="floor-step"><span class="step-icon">03</span><div><strong>Ember Hollow</strong><small>Watch your step</small></div><span class="lock">◇</span></div>
+        <div class="floor-step"><span class="step-icon">04</span><div><strong>Crystal Keep</strong><small>Into the unknown</small></div><span class="lock">◇</span></div>
+        <div class="floor-step"><span class="step-icon">05</span><div><strong>The Last Lantern</strong><small>A guardian awaits</small></div><span class="lock">◇</span></div>
+      </div><div class="best-run"><span class="record-icon">⚑</span><div><span class="small-label">YOUR PERSONAL BEST</span><strong id="best-run">A fresh beginning</strong></div><span class="best-star">✧</span></div><div class="journey-note"><span>✦</span> Even the smallest hero<br>can have a grand adventure.</div></aside>
+    </div>
+    <section class="feature-row" aria-label="Game features"><div><span class="feature-icon">✥</span><div><h4>Two thumbs. All you need.</h4><p>Move on the left. Make your mark on the right.</p></div></div><div><span class="feature-icon hourglass">⌛</span><div><h4>Made for the in-between.</h4><p>Short on time? Pause and pick up right here.</p></div></div><div><span class="feature-icon">♧</span><div><h4>Straight to the good stuff.</h4><p>No downloads, no accounts, no interruptions.</p></div></div></section>
+    <footer><span>A small escape from the everyday.</span><span>BUILT FOR LITTLE BREAKS <span class="footer-star">✦</span></span></footer>
+  </main>
+  <dialog id="help-dialog"><button id="close-help" class="dialog-close" aria-label="Close instructions">×</button><div class="eyebrow">YOUR FIELD GUIDE</div><h2>A hero in two thumbs.</h2><p>Drag the joystick at the bottom left to move. Hold the big sword button at the bottom right to attack nearby enemies.</p><p>Clear the little slimes, then defeat the floor’s guardian. When the glowing stairway opens, walk into it to descend. Each floor restores two hearts.</p><p>The guardian glows red before charging. Move out of its path, then get close and strike!</p><p>On a keyboard: <strong>WASD / arrows</strong> to move, <strong>Space</strong> to attack, <strong>Esc / P</strong> to pause. Your best floor is saved on this device. Five floors complete the adventure.</p><button class="primary-button" id="got-it">Got it. Let’s explore. <span>→</span></button></dialog>
+  <script src="game.js"></script>
+</body>
+</html>
